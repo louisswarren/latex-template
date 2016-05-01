@@ -1,0 +1,12 @@
+# Latex
+*.aux
+*.log
+*.pdf
+*.toc
+
+# Makefile
+.revisioninfo
+
+# Vim
+*.swp
+

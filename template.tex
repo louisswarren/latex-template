@@ -1,0 +1,52 @@
+\documentclass[draft,a4paper]{article}
+
+\usepackage{subfiles}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{ifdraft}
+\ifdraft{
+	\usepackage{todonotes}
+	\usepackage[left]{showlabels}
+	\newcommand{\noref}{({\color{red} ?})}
+}{
+	\newcommand{\todo}[1]{}
+	\newcommand{\noref}{}
+}
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\reals}{\mathbb{R}}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\theoremstyle{definition}
+\newtheorem{definition}[subsubsection]{Definition}
+
+\theoremstyle{plain}
+\newtheorem{corollary}[subsubsection]{Corollary}
+\newtheorem{lemma}[subsubsection]{Lemma}
+\newtheorem{proposition}[subsubsection]{Proposition}
+\newtheorem{theorem}[subsubsection]{Theorem}
+
+\begin{document}
+
+\title{Template}
+\author{Louis Warren}
+\maketitle
+
+\ifdraft{
+	\begin{center}
+		Revision: \textbf{\input{.revisioninfo}}
+	\end{center}
+}{}
+
+
+
+\end{document}
+
