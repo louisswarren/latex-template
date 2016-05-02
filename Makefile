@@ -5,13 +5,15 @@ BIBDEPENDENCIES = bibliography.bib
 
 .DEFAULT_GOAL = draft
 
+LATEXARGS = -file-line-error -halt-on-error
+
 
 ################################################################################
 
 
 
-LATEX = pdflatex -file-line-error -halt-on-error
-LATEXAUX = latex -file-line-error -halt-on-error
+LATEX = pdflatex $(LATEXARGS)
+LATEXAUX = pdflatex -draftmode $(LATEXARGS)
 BIBTEX = bibtex
 DRAFTTEX = "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 FINALTEX = "$(DOCUMENT).tex"
