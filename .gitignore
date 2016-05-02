@@ -1,16 +1,36 @@
-# Latex
-*.aux
-*.log
-*.pdf
-*.toc
+#-------#
+# Latex #
+#-------#
 
-# Bibtex
+# Citation information
+*.aux
+# Table of contents information
+*.toc
+# Log
+*.log
+# Final output
+*.pdf
+
+
+
+#--------#
+# Bibtex #
+#--------#
+
+# Generated bibliography
 *.bbl
+# Log
 *.blg
+
+
+
+#------#
+# Misc #
+#------#
 
 # Makefile
 .revisioninfo
 
-# Vim
+# Vim swap file
 *.swp
 
