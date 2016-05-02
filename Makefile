@@ -118,6 +118,6 @@ all: draftall finalall
 
 .PHONY: clean
 clean:
-	rm -f *.aux *.log *.blg *.bbl *.pdf .revisioninfo
+	rm -f *.aux *.toc *.log *.blg *.bbl *.pdf .revisioninfo
 ###-------###
 
