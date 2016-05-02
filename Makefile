@@ -1,5 +1,6 @@
 DOCUMENT = template
 DEPENDENCIES = template.tex
+BIBDEPENDENCIES = bibliography.bib
 
 
 .DEFAULT_GOAL = draft
@@ -11,6 +12,7 @@ DEPENDENCIES = template.tex
 
 LATEX = pdflatex -file-line-error -halt-on-error
 AUXONLY = "-draftmode"
+BIBTEX = bibtex
 DRAFTTEX = "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 FINALTEX = "$(DOCUMENT).tex"
 
@@ -34,6 +36,12 @@ $(DOCUMENT)-draft.aux: $(DEPENDENCIES) .revisioninfo
 .PHONY: redraft
 redraft: $(DOCUMENT)-draft.aux $(DEPENDENCIES)
 	$(LATEX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
+
+# Bibliography
+.PHONY: draftbib
+draftbib: $(DOCUMENT)-draft.bbl
+$(DOCUMENT)-draft.bbl: $(DOCUMENT)-draft.aux $(BIBDEPENDENCIES)
+	$(BIBTEX) $(DOCUMENT)-draft
 ###-------------###
 
 
@@ -56,6 +64,12 @@ $(DOCUMENT).aux: $(DEPENDENCIES)
 .PHONY: refinal
 refinal: $(DOCUMENT).aux $(DEPENDENCIES)
 	$(LATEX) $(FINALTEX)
+
+# Bibliography
+.PHONY: bib
+bib: $(DOCUMENT).bbl
+$(DOCUMENT).bbl: $(DOCUMENT).aux $(BIBDEPENDENCIES)
+	$(BIBTEX) $(DOCUMENT)
 ###-------------###
 
 
@@ -76,6 +90,6 @@ refinal: $(DOCUMENT).aux $(DEPENDENCIES)
 
 .PHONY: clean
 clean:
-	rm -f *.pdf *.aux *.log *.toc .revisioninfo
+	rm -f *.aux *.log *.blg *.bbl *.pdf .revisioninfo
 ###-------###
 

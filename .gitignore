@@ -4,6 +4,10 @@
 *.pdf
 *.toc
 
+# Bibtex
+*.bbl
+*.blg
+
 # Makefile
 .revisioninfo
 
