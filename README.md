@@ -52,9 +52,9 @@ Build explanation
 
 A full build (eg `finalall`) consists of the following steps:
 
-1. Use `latex` to build the `.aux` file, containing all used citations
+1. Use `pdflatex` to build the `.aux` file, containing all used citations
 2. Use `bibtex` to build the `.bbl` file using the `.aux` file. This contains
    the required bibliography entries.
-3. Use `latex` to rebuild the `.aux` file by adding the found citations from
+3. Use `pdflatex` to rebuild the `.aux` file by adding the found citations from
    the `.bbl` file.
 4. Use `pdflatex` to produce the final `.pdf` file from the `.aux` file.
