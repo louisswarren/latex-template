@@ -11,7 +11,7 @@ BIBDEPENDENCIES = bibliography.bib
 
 
 LATEX = pdflatex -file-line-error -halt-on-error
-AUXONLY = -draftmode
+LATEXAUX = latex -file-line-error -halt-on-error
 BIBTEX = bibtex
 DRAFTTEX = "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 FINALTEX = "$(DOCUMENT).tex"
@@ -30,12 +30,12 @@ $(DOCUMENT)-draft.pdf: $(DEPENDENCIES) .revisioninfo
 
 # Aux only
 $(DOCUMENT)-draft.aux: $(DEPENDENCIES) .revisioninfo
-	$(LATEX) $(AUXONLY) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
+	$(LATEXAUX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Aux with bibliography
 .PHONY: .draftauxbib
 .draftauxbib: $(DEPENDENCIES) .revisioninfo $(DOCUMENT)-draft.bbl
-	$(LATEX) $(AUXONLY) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
+	$(LATEXAUX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Double pass for setting references
 .PHONY: draftre
@@ -67,12 +67,12 @@ $(DOCUMENT).pdf: $(DEPENDENCIES)
 
 # Aux only
 $(DOCUMENT).aux: $(DEPENDENCIES)
-	$(LATEX) $(AUXONLY) $(FINALTEX)
+	$(LATEXAUX) $(FINALTEX)
 
 # Aux with bibliography
 .PHONY: .finalauxbib
 .finalauxbib: $(DEPENDENCIES) $(DOCUMENT).bbl
-	$(LATEX) $(AUXONLY) $(FINALTEX)
+	$(LATEXAUX) $(FINALTEX)
 
 # Double pass for setting references
 .PHONY: finalre
