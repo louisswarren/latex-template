@@ -11,7 +11,7 @@ BIBDEPENDENCIES = bibliography.bib
 
 
 LATEX = pdflatex -file-line-error -halt-on-error
-AUXONLY = "-draftmode"
+AUXONLY = -draftmode
 BIBTEX = bibtex
 DRAFTTEX = "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 FINALTEX = "$(DOCUMENT).tex"
@@ -30,11 +30,16 @@ $(DOCUMENT)-draft.pdf: $(DEPENDENCIES) .revisioninfo
 
 # Aux only
 $(DOCUMENT)-draft.aux: $(DEPENDENCIES) .revisioninfo
-	$(LATEX) -jobname $(DOCUMENT)-draft $(AUXONLY) $(DRAFTTEX)
+	$(LATEX) $(AUXONLY) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
+
+# Aux with bibliography
+.PHONY: draftauxbib
+draftauxbib: $(DEPENDENCIES) .revisioninfo $(DOCUMENT)-draft.bbl
+	$(LATEX) $(AUXONLY) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Double pass for setting references
 .PHONY: redraft
-redraft: $(DOCUMENT)-draft.aux $(DEPENDENCIES)
+redraft: draftauxbib $(DOCUMENT)-draft.bbl $(DEPENDENCIES)
 	$(LATEX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Bibliography
@@ -60,9 +65,14 @@ $(DOCUMENT).pdf: $(DEPENDENCIES)
 $(DOCUMENT).aux: $(DEPENDENCIES)
 	$(LATEX) $(AUXONLY) $(FINALTEX)
 
+# Aux with bibliography
+.PHONY: auxbib
+auxbib: $(DEPENDENCIES) $(DOCUMENT).bbl
+	$(LATEX) $(AUXONLY) $(FINALTEX)
+
 # Double pass for setting references
 .PHONY: refinal
-refinal: $(DOCUMENT).aux $(DEPENDENCIES)
+refinal: auxbib $(DEPENDENCIES)
 	$(LATEX) $(FINALTEX)
 
 # Bibliography
