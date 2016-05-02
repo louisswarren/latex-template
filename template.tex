@@ -1,4 +1,8 @@
-\documentclass[draft,a4paper]{article}
+\ifdefined\isdraft
+	\documentclass[draft,a4paper]{article}
+\else
+	\documentclass[a4paper]{article}
+\fi
 
 \usepackage{subfiles}
 
