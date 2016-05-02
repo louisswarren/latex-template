@@ -1,33 +1,55 @@
 DOCUMENT = template
+DEPENDENCIES = template.tex
+
+
+.DEFAULT_GOAL = draft
+
+
+################################################################################
+
+
 
 LATEX = pdflatex -file-line-error -halt-on-error
-
+DRAFTMODE = "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 
 
 
 # Draft build
 .PHONY: draft
 draft: $(DOCUMENT)-draft.pdf
+$(DOCUMENT)-draft.pdf: $(DEPENDENCIES) .revisioninfo
+	$(LATEX) -jobname $(DOCUMENT)-draft $(DRAFTMODE)
 
-$(DOCUMENT)-draft.pdf: *.tex .revisioninfo
-	$(LATEX) -jobname $(DOCUMENT)-draft "\def\isdraft{1} \input{$(DOCUMENT).tex}"
+.PHONY: redraft
+redraft: $(DOCUMENT)-draft.pdf
+	$(LATEX) -jobname $(DOCUMENT)-draft $(DRAFTMODE)
+###
+
 
 
 # Final build
 .PHONY: final
 final: $(DOCUMENT).pdf
-
-$(DOCUMENT).pdf: *.tex
+$(DOCUMENT).pdf: $(DEPENDENCIES)
 	$(LATEX) "$(DOCUMENT).tex"
 
-
-.PHONY: all
-all: $(DOCUMENT).pdf
+.PHONY: refinal
+refinal: $(DOCUMENT).pdf
 	$(LATEX) "$(DOCUMENT).tex"
+###
 
+
+
+# Git revisioning
 .revisioninfo: .git
 	git log -1 --oneline > .revisioninfo
+###
 
+
+
+# Tools
 .PHONY: clean
 clean:
 	rm -f *.pdf *.aux *.log *.toc .revisioninfo
+###
+
