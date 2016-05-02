@@ -17,6 +17,7 @@ Included are four make targets.
 
 
 ## Draft
+
 If the document is built as a draft, it is built with the macro `isdraft`
 defined as `1`. This triggers the following effects:
 
