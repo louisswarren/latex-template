@@ -6,6 +6,7 @@ commands and packages are used, the makefile will be of use for any type of
 document.
 
 
+
 Make
 ----
 
@@ -15,7 +16,9 @@ Included are several make targets:
 * `finalbib`: Build the bibliography.
 * `finalre`:  Forcibly rebuilds the document, and if it doesn't exist, builds it
                   twice. This handles changing of labels.
-* `finalall:  Performs a complete build.
+* `finalall:  Performs a complete build (equivalent to `finalbib` + `finalre`).
+
+In short: use `make final` after normal changes, use `make finalre` after changes involving labels, and use `make finalall` after modifying the bibliography.
 
 There are also the targets `draft`, `draftbib`, `draftre`, and `draftall`,
 which do the same but build draft versions (see below).  Finally, there is the
@@ -26,7 +29,8 @@ for convenience, as it will be by far the most used target when writing
 documents.
 
 
-Draft and Final versions
+
+Draft and final versions
 ------------------------
 
 If the document is built as a draft, it is built with the macro `isdraft`
@@ -40,3 +44,17 @@ defined as `1`. This triggers the following effects:
 5. The current git revision is displayed below the title.
 
 On final builds, the above are all hidden.
+
+
+
+Build explanation
+-----------------
+
+A full build (eg `finalall`) consists of the following steps:
+
+1. Use `latex` to build the `.aux` file, containing all used citations
+2. Use `bibtex` to build the `.bbl` file using the `.aux` file. This contains
+   the required bibliography entries.
+3. Use `latex` to rebuild the `.aux` file by adding the found citations from
+   the `.bbl` file.
+4. Use `pdflatex` to produce the final `.pdf` file from the `.aux` file.
