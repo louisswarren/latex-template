@@ -1,22 +1,63 @@
+###---------------###
+### Configuration ###
+###---------------###
+
+# Name for the generated .pdf
+# Example:
+# 	DOCUMENT = template
+
 DOCUMENT = template
+
+
+# All files used by the main latex document (eg your .tex and .sty files)
+# Example:
+# 	DEPENDENCIES = template.tex template.sty
 DEPENDENCIES = template.tex
-BIBDEPENDENCIES = bibliography.bib
 
 
+# Bibliography settings
+# Example one: with one bibliography file, 'bibliography.bib'
+# 	BIBDEPENDENCIES = bibliography
+#
+# Example two: no bibliography
+# 	BIBDEPENDENCIES =
+BIBDEPENDENCIES = bibliography
+
+
+# UNCOMMENT THIS LINE IF YOU DO NOT HAVE A BIBLIOGRAPHY
+# 	.IGNORE: $(BIBTARGETS)
+
+
+# Default build target
+# Example:
+# 	.DEFAULT_GOAL = finalre
 .DEFAULT_GOAL = draft
 
+
+# Arguments to pass to pdflatex
 LATEXARGS = -file-line-error -halt-on-error
+
+###---------------###
+
 
 
 ################################################################################
+### Be wary when modifying below this line ####################################
+################################################################################
 
 
+
+###-----------###
+### Constants ###
+###-----------###
 
 LATEX = pdflatex $(LATEXARGS)
 LATEXAUX = pdflatex -draftmode $(LATEXARGS)
 BIBTEX = bibtex
 DRAFTTEX = "\def\isdraft{1} \input{$(DOCUMENT).tex}"
 FINALTEX = "$(DOCUMENT).tex"
+BIBTARGETS = $(DOCUMENT)-draft.bbl $(DOCUMENT).bbl draftbib finalbib
+###-----------###
 
 
 
