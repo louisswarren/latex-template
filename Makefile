@@ -5,7 +5,6 @@
 # Name for the generated .pdf
 # Example:
 # 	DOCUMENT = template
-
 DOCUMENT = template
 
 
@@ -15,17 +14,14 @@ DOCUMENT = template
 DEPENDENCIES = template.tex
 
 
-# Bibliography settings
+# Bibliography settings. If you don't have a bibliography, remove this line.
 # Example one: with one bibliography file, 'bibliography.bib'
 # 	BIBDEPENDENCIES = bibliography
-#
-# Example two: no bibliography
-# 	BIBDEPENDENCIES =
 BIBDEPENDENCIES = bibliography
 
 
 # UNCOMMENT THIS LINE IF YOU DO NOT HAVE A BIBLIOGRAPHY
-# 	.IGNORE: $(BIBTARGETS)
+# .IGNORE: $(BIBTARGETS)
 
 
 # Default build target
