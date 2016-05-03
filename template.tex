@@ -1,8 +1,8 @@
-\ifdefined\isdraft
-	\documentclass[draft,a4paper]{article}
-\else
-	\documentclass[a4paper]{article}
-\fi
+\documentclass[
+	\ifdefined\isdraft
+		draft,%
+	\else\fi
+a4paper]{article}
 
 \usepackage{subfiles}
 
