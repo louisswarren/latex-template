@@ -15,9 +15,9 @@ DEPENDENCIES = template.tex
 
 
 # Bibliography settings. If you don't have a bibliography, remove this line.
-# Example one: with one bibliography file, 'bibliography.bib'
-# 	BIBDEPENDENCIES = bibliography
-BIBDEPENDENCIES = bibliography
+# Example one: with one bibliography file
+# 	BIBDEPENDENCIES = bibliography.bib
+BIBDEPENDENCIES = bibliography.bib
 
 
 # UNCOMMENT THIS LINE IF YOU DO NOT HAVE A BIBLIOGRAPHY
