@@ -16,9 +16,11 @@ Included are several make targets:
 * `finalbib`: Build the bibliography.
 * `finalre`:  Forcibly rebuilds the document, and if it doesn't exist, builds it
                   twice. This handles changing of labels.
-* `finalall:  Performs a complete build (equivalent to `finalbib` + `finalre`).
+* `finalall`: Performs a complete build (equivalent to `finalbib` + `finalre`).
 
-In short: use `make final` after normal changes, use `make finalre` after changes involving labels, and use `make finalall` after modifying the bibliography.
+In short: use `make final` after normal changes, use `make finalre` after
+changes involving labels, and use `make finalall` after modifying the
+bibliography.
 
 There are also the targets `draft`, `draftbib`, `draftre`, and `draftall`,
 which do the same but build draft versions (see below).  Finally, there is the
