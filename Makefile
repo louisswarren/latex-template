@@ -11,7 +11,7 @@ DOCUMENT = template
 # All files used by the main latex document (eg your .tex and .sty files)
 # Example:
 # 	DEPENDENCIES = template.tex template.sty
-DEPENDENCIES = template.tex
+DEPENDENCIES = template.tex mymaths.sty
 
 
 # Bibliography settings. If you don't have a bibliography, remove this line.
