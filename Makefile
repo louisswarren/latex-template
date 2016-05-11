@@ -24,6 +24,10 @@ BIBDEPENDENCIES = bibliography.bib
 # .IGNORE: $(BIBTARGETS)
 
 
+# COMMENT OUT THIS LINE IF YOU ARE NOT USING GIT
+REVISIONINFO = .revisioninfo
+
+
 # Default build target
 # Example:
 # 	.DEFAULT_GOAL = finalre
@@ -64,16 +68,16 @@ BIBTARGETS = $(DOCUMENT)-draft.bbl $(DOCUMENT).bbl draftbib finalbib
 # Single-pass
 .PHONY: draft
 draft: $(DOCUMENT)-draft.pdf
-$(DOCUMENT)-draft.pdf: $(DEPENDENCIES) .revisioninfo
+$(DOCUMENT)-draft.pdf: $(DEPENDENCIES) $(REVISIONINFO)
 	$(LATEX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Aux only
-$(DOCUMENT)-draft.aux: $(DEPENDENCIES) .revisioninfo
+$(DOCUMENT)-draft.aux: $(DEPENDENCIES) $(REVISIONINFO)
 	$(LATEXAUX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Aux with bibliography
 .PHONY: .draftauxbib
-.draftauxbib: $(DEPENDENCIES) .revisioninfo $(DOCUMENT)-draft.bbl
+.draftauxbib: $(DEPENDENCIES) $(REVISIONINFO) $(DOCUMENT)-draft.bbl
 	$(LATEXAUX) -jobname $(DOCUMENT)-draft $(DRAFTTEX)
 
 # Double pass for setting references
@@ -145,8 +149,8 @@ all: draftall finalall
 ### Git revisioning ###
 ###---------------- ###
 
-.revisioninfo: .git
-	git log -1 --oneline > .revisioninfo
+$(REVISIONINFO): .git
+	git log -1 --oneline > $(REVISIONINFO)
 ###---------------- ###
 
 
@@ -157,6 +161,6 @@ all: draftall finalall
 
 .PHONY: clean
 clean:
-	rm -f *.aux *.toc *.log *.blg *.bbl *.pdf .revisioninfo
+	rm -f *.aux *.toc *.log *.blg *.bbl *.pdf $(REVISIONINFO)
 ###-------###
 
