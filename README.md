@@ -63,7 +63,7 @@ The Makefile contains all the information required for configuring it. Take
 note of how to build a document with no bibliography; you must remove the
 `BIBDEPENDENCIES` line and *uncomment* the `.IGNORE: $(BIBTARGETS)` line. If
 you do this, you can perform full builds using `finalre` and `draftre` (though
-`all` will still work, performining redundant steps).
+`all` will still work, performing redundant steps).
 
 
 
