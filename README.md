@@ -59,11 +59,23 @@ On final builds, the above are all hidden.
 Bibliography
 ------------
 
-The Makefile contains all the information required for configuring it. Take
+The makefile contains all the information required for configuring it. Take
 note of how to build a document with no bibliography; you must remove the
 `BIBDEPENDENCIES` line and *uncomment* the `.IGNORE: $(BIBTARGETS)` line. If
 you do this, you can perform full builds using `finalre` and `draftre` (though
 `all` will still work, performing redundant steps).
+
+
+
+Git
+---
+
+By default, when in draft mode, the generated document will display the most
+recent git commit short SHA1 and message. This is done by writing to
+`.revisioninfo` inside the makefile. The filename used can be modified by
+changing it once `Makefile` and once in `template.tex`. To disable the output
+all together (for example if you aren't using git), simply delete these
+sections.
 
 
 
