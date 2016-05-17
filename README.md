@@ -73,9 +73,9 @@ Git
 By default, when in draft mode, the generated document will display the most
 recent git commit short SHA1 and message. This is done by writing to
 `.revisioninfo` inside the makefile. The filename used can be modified by
-changing it once `Makefile` and once in `template.tex`. To disable the output
-all together (for example if you aren't using git), simply delete these
-sections.
+changing it once `Makefile` and once in `template.tex` (you will probably want
+to change it in `.gitignore` too). To disable the output all together (for
+example if you aren't using git), simply delete these sections.
 
 
 
