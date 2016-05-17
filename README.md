@@ -6,6 +6,13 @@ commands and packages are used, the makefile will be of use for any type of
 document.
 
 
+If you just want to easily compile latex documents and aren't interested in the
+draft version capabilities (see below), you may wish to try
+[latexmk](https://www.ctan.org/pkg/latexmk/) instead.  In terms of simply
+compiling documents, the primary difference between this project and latexmk is
+that I don't know how to use latexmk.
+
+
 
 Make
 ----
