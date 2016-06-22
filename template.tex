@@ -10,6 +10,14 @@ a4paper]{article}
 	\usepackage{todonotes}
 	\usepackage[left]{showlabels}
 	\newcommand{\noref}{({\color{red} ?})}
+
+%	\definecolor{solarized-fg}{rgb}{0.5137,0.5804,0.5882}
+%	\definecolor{solarized-bg}{rgb}{0,0.1686,0.2118}
+
+	\color{black}
+	\pagecolor{white}
+	\let\oldtodo\todo
+	\renewcommand{\todo}[1]{\oldtodo{\color{black}{#1}}}
 }{
 	\newcommand{\todo}[1]{}
 	\newcommand{\noref}{}
